@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("http://jlgunayan.top/"),
   openGraph: {
     title: "JmG",
-    description: "Modern developer/agency landing page template.",
+    description: "Click to view JmG's Website.",
     url: "http://jlgunayan.top/",
     siteName: "Jm Gunayan",
     type: "website",
@@ -33,4 +33,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
 

@@ -7,18 +7,18 @@ import GradientBackdrop from "@/components/GradientBackdrop";
 export const metadata: Metadata = {
   title: "JmG",
   description: "A clean-room, production-ready Next.js landing page for developers and agencies.",
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("http://jlgunayan.top/"),
   openGraph: {
-    title: "Jm Gunayan",
+    title: "JmG",
     description: "Modern developer/agency landing page template.",
-    url: "https://example.com",
+    url: "http://jlgunayan.top/",
     siteName: "Jm Gunayan",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jm Gunayan",
-    description: "Modern developer/agency landing page template.",
+    title: "JmG",
+    description: "A 🇵🇭 Filipino developer studying Computer Science.",
   },
 };
 
@@ -33,3 +33,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

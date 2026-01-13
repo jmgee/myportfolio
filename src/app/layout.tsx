@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("http://jlgunayan.top/"),
   openGraph: {
     title: "JmG",
-    description: "Click to view JmG's Website.",
+    description: "The Story Behind My Code",
     url: "http://jlgunayan.top/",
     siteName: "Jm Gunayan",
     type: "website",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "JmG",
-    description: "A 🇵🇭 Filipino developer studying Computer Science.",
+    description: "The Story Behind My Code",
   },
 };
 
@@ -33,5 +33,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
 
 

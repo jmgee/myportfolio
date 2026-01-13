@@ -1,4 +1,4 @@
-# myportfolio
+# My Personal Portfolio About Me
 
 A modern, responsive portfolio website built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.  
 Designed to showcase FiveM development work with dedicated pages for **Skills**, **Projects**, **Pricing**, **Feedbacks**, and **Contact**.
@@ -31,3 +31,4 @@ Designed to showcase FiveM development work with dedicated pages for **Skills**,
 - **Tailwind CSS**
 - **Framer Motion**
 - **lucide-react** icons
+

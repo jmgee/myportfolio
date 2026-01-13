@@ -2,17 +2,19 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import GradientBackdrop from "@/components/GradientBackdrop";
 
 export const metadata: Metadata = {
-  title: "JmG",
-  description: "A clean-room, production-ready Next.js landing page for developers and agencies.",
-  metadataBase: new URL("http://jlgunayan.top/"),
+  title: "Jm Gunayan",
+  description: "FiveM Developer & Software Engineering Student.",
+  metadataBase: new URL("https://jlgunayan.top/"),
+  alternates: {
+    canonical: "https://jlgunayan.top/",
+  },
   openGraph: {
     title: "JmG",
     description: "The Story Behind My Code",
-    url: "http://jlgunayan.top/",
-    siteName: "JmG",
+    url: "https://jlgunayan.top/",
+    siteName: "Jm Gunayan",
     type: "website",
   },
   twitter: {
@@ -22,7 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body className="bg-black text-zinc-100 antialiased">
@@ -33,7 +39,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
-
-
-

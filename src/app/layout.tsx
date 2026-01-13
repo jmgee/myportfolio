@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "JmG",
     description: "The Story Behind My Code",
     url: "http://jlgunayan.top/",
-    siteName: "Jm Gunayan",
+    siteName: "JmG",
     type: "website",
   },
   twitter: {
@@ -33,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
 
 
 

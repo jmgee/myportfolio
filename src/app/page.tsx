@@ -106,7 +106,7 @@ export default function Page() {
               <div className="rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-soft">
                 <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-zinc-950/40">
                   <img
-                    src="https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/mxds.gif"
+                    src="https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/SnapInsta.to_366958503_18203682817253656_1593931568972879815_n.jpg"
                     alt="mxds logo"
                     className="h-full w-full object-cover"
                     loading="eager"

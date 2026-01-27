@@ -115,13 +115,13 @@ export default function Page() {
 
                 <div className="mt-4 flex justify-center">
                   <a
-                    href="https://discord.gg/pfp"
+                    href="https://www.instagram.com/definitelynotjmg/"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-zinc-300 hover:bg-white/10"
                   >
                     <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                    Logo from <span className="text-zinc-100">Adore Discord</span>
+                    Picture from <span className="text-zinc-100">Instagram</span>
                   </a>
                 </div>
               </div>

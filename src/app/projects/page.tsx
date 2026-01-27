@@ -3,8 +3,7 @@
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import { motion } from "framer-motion";
-
-type ServerStatus = "active" | "down";
+type ServerStatus = "up" | "down";
 
 type ServerCard = {
   id: string;
@@ -20,94 +19,132 @@ const SERVERS: ServerCard[] = [
   {
     id: "rivals-city",
     name: "Rivals City",
-    description: "Developed & Maintained by mxds",
+    description: "Competitive RP hub with custom systems focused on progression and community events.",
     players: "0/300",
-    discordUrl: "https://discord.gg/pm5s2pKNcy",
+    discordUrl: "https://discord.gg/REPLACE_RIVALS",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/1024.png",
     status: "down",
   },
 
   {
-    id: "hdc-city",
+    id: "highdays-cali",
     name: "Highdays Cali",
-    description: "Where Chaos Meets Paradise",
+    description: "Cali-inspired RP experience with smooth performance and curated gameplay loops.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_HIGHDAYS",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/highdays1024.png",
     status: "down",
   },
 
   {
-    id: "ss-city",
-    name: "SouthSide City",
-    description: "Semi Serious RP",
+    id: "bini-city",
+    name: "BINI City",
+    description: "Inspired by the Nation’s Girl Group. A Semi-Serious RP community.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_HIGHDAYS",
+    logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/bini1024.png",
+    status: "down",
+  },
+
+  {
+    id: "district-8",
+    name: "District 8",
+    description: "Built with Qbox Framework. Serious roleplay with realistic scripts.",
+    players: "0/300",
+    discordUrl: "https://discord.gg/REPLACE_HIGHDAYS",
+    logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/district8.png",
+    status: "down",
+  },
+
+  {
+    id: "hallows-city-blackout",
+    name: "The Hallows City: Blackout",
+    description: "Zombie survival mode with blackout events, loot cycles, and high-risk zones.",
+    players: "0/300",
+    discordUrl: "https://discord.gg/REPLACE_HALLOWS",
+    logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/thc.png",
+    status: "down",
+  },
+
+  {
+    id: "southside-city",
+    name: "SouthSide City",
+    description: "Street RP ecosystem with gang systems, territory control, and balanced economy.",
+    players: "0/300",
+    discordUrl: "https://discord.gg/REPLACE_SOUTHSIDE",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/ss1024.png",
     status: "down",
   },
 
   {
-    id: "escolta-city",
-    name: "Escolta RP",
-    description: "Mass Hiring Whitelisted Jobs & Gangs",
+    id: "cavite-city-reborn",
+    name: "Cavite City Reborn",
+    description: "Built with custom scripts and advanced whitelisted jobs.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_ESCOLTA",
+    logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/cavite1024.png",
+    status: "down",
+  },
+
+  {
+    id: "escolta-rp",
+    name: "Escolta RP",
+    description: "Metro RP with polished interactions, streamlined UI, and stable operations.",
+    players: "0/300",
+    discordUrl: "https://discord.gg/REPLACE_ESCOLTA",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/escolta1024.png",
     status: "down",
   },
 
   {
-    id: "trinity-city",
+    id: "trinity-roleplay",
     name: "Trinity Roleplay",
-    description: "Whitelisted Jobs, Gangs, Business",
+    description: "Community-first RP with deep role systems and long-term progression.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_TRINITY",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/trinity1024.png",
     status: "down",
   },
 
   {
-    id: "br-city",
-    name: "BlackRose Roleplay",
-    description: "Since 2022",
+    id: "blackrose-roleplay",
+    name: "Blackrose Roleplay",
+    description: "High-fidelity RP with custom mechanics and scalable infrastructure.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_BLACKROSE",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/br1024.png",
     status: "down",
   },
 
   {
-    id: "autonomy-city",
+    id: "autonomy-rp",
     name: "Autonomy RP",
-    description: "Semi Serious Roleplay",
+    description: "Modern RP build with improved performance and iterative feature delivery.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_AUTONOMY",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/autonomy1024.png",
     status: "down",
   },
 
   {
-    id: "newhorizon-city",
-    name: "New Horizon Roleplay",
-    description: "Developed & Maintained by mxds",
+    id: "new-horizon-rp",
+    name: "New Horizon RP",
+    description: "Fresh RP framework with clean UX patterns and maintainable architecture.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_NEWHORIZON",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/newhorizon1024.png",
     status: "down",
   },
 
   {
-    id: "majesty-city",
-    name: "Majesty City RP",
-    description: "Police, Gangs, Business, Modded Cars",
+    id: "majesty-city-v2",
+    name: "Majesty City V2",
+    description: "Premium RP experience with refined UI and reliable operations.",
     players: "0/300",
-    discordUrl: "https://discord.gg/",
+    discordUrl: "https://discord.gg/REPLACE_MAJESTY",
     logoUrl: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/mjsty_1024.png",
     status: "down",
   },
-
-
 ];
 
 export default function ProjectsPage() {

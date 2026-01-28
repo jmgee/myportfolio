@@ -15,53 +15,110 @@ export default function PricingTabs() {
   const WEB_ENABLED = true; 
 
   const data = useMemo(() => {
-    if (track === "fivem") {
-      return {
-        workloadLeft: "Current Workload",
-        workloadValue: "0 Active Server",
-        plans: [
-          {
-            title: "FiveM Dev Basic Setup",
-            subtitle: "Perfect for growing RP communities.",
-            initialFee: "₱5,000",
-            monthly: "₱3,000",
-            bullets: [
-              "Maintenance & ongoing support",
-              "Minor updates & bug fixes",
-              "Performance optimization",
-            ],
-            footerNote: "Excludes major custom script creations",
-            popular: false,
-          },
-          {
-            title: "FiveM Dev Premium Setup",
-            subtitle: "Perfect for PVP Style RP Servers.",
-            initialFee: "₱10,000",
-            monthly: "₱5,000",
-            bullets: [
-              "Full maintenance & optimization",
-              "Minor to mid custom script works",
-              "Implementation of new ideas",
-              "Stability checks & continuous improvements",
-            ],
-            footerNote:
-              "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
-            popular: true,
-          },
-        ],
-        aboutTitle: "About My Work",
-        aboutLeftTitle: "FiveM Development",
-        aboutLeftBody:
-          "My pricing reflects 4 years of active experience and a proven track record across Philippine RP servers.",
-        aboutLeftBody2:
-          "I deliver clean, optimized, and reliable systems backed by professional long-term support.",
-        hiringFeeNote:
-          "The initial hiring fee ensures commitment, protects both parties, and secures project scheduling.",
-      };
-    }
+  if (track === "fivem") {
+    return {
+      workloadLeft: "Current Workload",
+      workloadValue: "0 Active Server",
+      plans: [
+        {
+          title: "FiveM Dev Basic Setup",
+          subtitle: "Perfect for growing RP communities.",
+          initialFee: "₱5,000",
+          monthly: "₱3,000",
+          bullets: [
+            "Maintenance & ongoing support",
+            "Minor updates & bug fixes",
+            "Performance optimization",
+          ],
+          footerNote: "Excludes major custom script creations",
+          popular: false,
+        },
+        {
+          title: "FiveM Dev Premium Setup",
+          subtitle: "Perfect for PVP Style RP Servers.",
+          initialFee: "₱10,000",
+          monthly: "₱5,000",
+          bullets: [
+            "Full maintenance & optimization",
+            "Minor to mid custom script works",
+            "Implementation of new ideas",
+            "Stability checks & continuous improvements",
+          ],
+          footerNote:
+            "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
+          popular: true,
+        },
+      ],
+      aboutTitle: "About My Work",
+      aboutLeftTitle: "FiveM Development",
+      aboutLeftBody:
+        "My pricing reflects 4 years of active experience and a proven track record across Philippine RP servers.",
+      aboutLeftBody2:
+        "I deliver clean, optimized, and reliable systems backed by professional long-term support.",
+      hiringFeeNote:
+        "The initial hiring fee ensures commitment, protects both parties, and secures project scheduling.",
+    };
+  }
 
-    return null;
-  }, [track]);
+  if (track === "web") {
+    return {
+      workloadLeft: "Service Type",
+      workloadValue: "Project-Based",
+      plans: [
+        {
+          title: "Basic Frontend",
+          subtitle: "HTML, CSS, JavaScript",
+          initialFee: "₱3,000",
+          startsAt: "₱6,000",
+          bullets: [
+            "Clean, responsive design",
+            "Mobile-friendly",
+            "Fast delivery",
+          ],
+          footerNote: "",
+          popular: false,
+        },
+        {
+          title: "Frontend + Backend",
+          subtitle: "HTML, CSS, JavaScript, PHP",
+          initialFee: "₱8,000",
+          startsAt: "₱12,000",
+          bullets: [
+            "Database integration",
+            "User authentication",
+            "API development",
+          ],
+          footerNote: "",
+          popular: false,
+        },
+        {
+          title: "Advanced Frameworks",
+          subtitle: "Full-stack development",
+          initialFee: "₱15,000",
+          startsAt: "₱25,000",
+          bullets: [
+            "Enterprise-grade solutions",
+            "Scalable architecture",
+            "Modern best practices",
+          ],
+          technologies: ["Laravel", "React + Express", "Next.js", "Go"],
+          footerNote: "",
+          popular: true,
+        },
+      ],
+      aboutTitle: "Web Development",
+      aboutLeftTitle: "Web Development Services",
+      aboutLeftBody:
+        "Project-based web development focused on performance, scalability, and clean architecture.",
+      aboutLeftBody2:
+        "Pricing varies depending on scope, integrations, and delivery timeline.",
+      hiringFeeNote:
+        "All web projects are quoted per scope. Final pricing is confirmed after requirement review.",
+    };
+  }
+
+  return null;
+}, [track]);
 
   const containerVariants: Variants = {
     hidden: {},

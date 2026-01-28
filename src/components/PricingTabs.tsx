@@ -7,7 +7,7 @@ import Button from "@/components/Button";
 import { Briefcase, Check, Info } from "lucide-react";
 import { motion, type Variants } from "framer-motion";
 
-type Track = "fivem";
+type Track = "fivem" | "web";
 
 export default function PricingTabs() {
   const [track, setTrack] = useState<Track>("fivem");
@@ -58,7 +58,17 @@ export default function PricingTabs() {
       };
     }
 
-    return null;
+    return {
+      workloadLeft: "Status",
+      workloadValue: "Coming Soon",
+      plans: [],
+      aboutTitle: "Web Development",
+      aboutLeftTitle: "Web Development",
+      aboutLeftBody:
+        "This service will be available soon. For now, please inquire directly.",
+      aboutLeftBody2: "",
+      hiringFeeNote: "Contact for early access discussions.",
+    };
   }, [track]);
 
   const containerVariants: Variants = {
@@ -87,68 +97,80 @@ export default function PricingTabs() {
       animate="show"
     >
       <motion.div variants={itemVariants} className="flex justify-center">
-        <button
-          onClick={() => setTrack("fivem")}
-          className={[
-            "inline-flex rounded-xl border px-4 py-2 text-sm transition",
-            track === "fivem"
-              ? "border-blue-500/40 bg-blue-500/10 text-blue-200"
-              : "border-white/10 bg-white/5 text-zinc-300 hover:bg-white/10",
-          ].join(" ")}
-        >
-          FiveM Development
-        </button>
-      </motion.div>
+        <div className="inline-flex rounded-2xl border border-white/10 bg-white/5 p-1">
+          <button
+            onClick={() => setTrack("fivem")}
+            className={[
+              "rounded-xl px-5 py-2 text-sm font-medium transition",
+              track === "fivem"
+                ? "bg-blue-500 text-white shadow-soft"
+                : "text-zinc-400 hover:text-zinc-200",
+            ].join(" ")}
+          >
+            FiveM Development
+          </button>
 
+          <button
+            onClick={() => setTrack("web")}
+            className={[
+              "rounded-xl px-5 py-2 text-sm font-medium transition",
+              track === "web"
+                ? "bg-blue-500 text-white shadow-soft"
+                : "text-zinc-400 hover:text-zinc-200",
+            ].join(" ")}
+          >
+            Web Development
+          </button>
+        </div>
+      </motion.div>
       <motion.div variants={itemVariants} className="mt-6 flex justify-center">
         <div className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm">
           <Briefcase className="h-4 w-4 text-zinc-300" />
-          <span className="text-zinc-400">{data?.workloadLeft}</span>
-          <span className="font-semibold text-white">{data?.workloadValue}</span>
+          <span className="text-zinc-400">{data.workloadLeft}</span>
+          <span className="font-semibold text-white">{data.workloadValue}</span>
         </div>
       </motion.div>
 
       <Container>
-        <motion.div
-          variants={containerVariants}
-          className="mt-10 grid gap-6 lg:grid-cols-2"
-        >
-          {data?.plans.map((p) => (
-            <motion.div key={p.title} variants={itemVariants}>
-              <PlanCard {...p} />
-            </motion.div>
-          ))}
-        </motion.div>
+        {data.plans.length > 0 && (
+          <motion.div
+            variants={containerVariants}
+            className="mt-10 grid gap-6 lg:grid-cols-2"
+          >
+            {data.plans.map((p) => (
+              <motion.div key={p.title} variants={itemVariants}>
+                <PlanCard {...p} />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
 
-        {/* ABOUT */}
         <motion.div variants={itemVariants}>
           <Card className="mt-10">
             <div className="mb-6 flex items-center gap-3">
               <span className="rounded-xl border border-white/10 bg-white/5 p-2">
                 <Info className="h-5 w-5" />
               </span>
-              <div className="text-lg font-semibold">{data?.aboutTitle}</div>
+              <div className="text-lg font-semibold">{data.aboutTitle}</div>
             </div>
 
             <div className="space-y-3">
               <div className="text-sm font-semibold text-zinc-200">
-                {data?.aboutLeftTitle}
+                {data.aboutLeftTitle}
               </div>
-              <p className="text-sm text-zinc-300">{data?.aboutLeftBody}</p>
-              <p className="text-sm text-zinc-300">{data?.aboutLeftBody2}</p>
+              <p className="text-sm text-zinc-300">{data.aboutLeftBody}</p>
+              {data.aboutLeftBody2 && (
+                <p className="text-sm text-zinc-300">{data.aboutLeftBody2}</p>
+              )}
             </div>
 
             <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
               <div className="text-xs text-zinc-300">
-                {data?.hiringFeeNote}
+                {data.hiringFeeNote}
               </div>
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div className="text-xs text-zinc-400">
-                Rates may vary depending on scope and requirements.
-              </div>
-
+            <div className="mt-6 flex justify-end">
               <Button href="/contact" variant="primary" size="sm">
                 Request a quote
               </Button>
@@ -226,7 +248,11 @@ function PlanCard({
       </div>
 
       <div className="mt-6">
-        <Button href="/contact" variant={popular ? "primary" : "secondary"} size="sm">
+        <Button
+          href="/contact"
+          variant={popular ? "primary" : "secondary"}
+          size="sm"
+        >
           Get started →
         </Button>
       </div>

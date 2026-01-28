@@ -3,6 +3,7 @@
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import { motion } from "framer-motion";
+
 type ServerStatus = "up" | "down";
 
 type ServerCard = {
@@ -200,7 +201,7 @@ export default function ProjectsPage() {
 }
 
 function isActive(server: ServerCard) {
-  return server.status === "active";
+  return server.status === "up";
 }
 
 function ServerCardView({ server }: { server: ServerCard }) {

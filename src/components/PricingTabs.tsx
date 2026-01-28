@@ -12,55 +12,55 @@ type Track = "fivem" | "web";
 export default function PricingTabs() {
   const [track, setTrack] = useState<Track>("fivem");
 
-  const WEB_ENABLED = true; 
+  // Toggle this when Web Development officially launches
+  const WEB_ENABLED = true;
 
   const data = useMemo(() => {
-  if (track === "fivem") {
-    return {
-      workloadLeft: "Current Workload",
-      workloadValue: "0 Active Server",
-      plans: [
-        {
-          title: "FiveM Dev Basic Setup",
-          subtitle: "Perfect for growing RP communities.",
-          initialFee: "₱5,000",
-          monthly: "₱3,000",
-          bullets: [
-            "Maintenance & ongoing support",
-            "Minor updates & bug fixes",
-            "Performance optimization",
-          ],
-          footerNote: "Excludes major custom script creations",
-          popular: false,
-        },
-        {
-          title: "FiveM Dev Premium Setup",
-          subtitle: "Perfect for PVP Style RP Servers.",
-          initialFee: "₱10,000",
-          monthly: "₱5,000",
-          bullets: [
-            "Full maintenance & optimization",
-            "Minor to mid custom script works",
-            "Implementation of new ideas",
-            "Stability checks & continuous improvements",
-          ],
-          footerNote:
-            "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
-          popular: true,
-        },
-      ],
-      aboutTitle: "About My Work",
-      aboutLeftTitle: "FiveM Development",
-      aboutLeftBody:
-        "My pricing reflects 4 years of active experience and a proven track record across Philippine RP servers.",
-      aboutLeftBody2:
-        "I deliver clean, optimized, and reliable systems backed by professional long-term support.",
-      hiringFeeNote:
-        "The initial hiring fee ensures commitment, protects both parties, and secures project scheduling.",
-    };
-  }
+    if (track === "fivem") {
+      return {
+        workloadLeft: "Current Workload",
+        workloadValue: "0 Active Server",
+        plans: [
+          {
+            title: "FiveM Dev Basic Setup",
+            subtitle: "Perfect for growing RP communities.",
+            initialFee: "₱5,000",
+            monthly: "₱3,000",
+            bullets: [
+              "Maintenance & ongoing support",
+              "Minor updates & bug fixes",
+              "Performance optimization",
+            ],
+            footerNote: "Excludes major custom script creations",
+            popular: false,
+          },
+          {
+            title: "FiveM Dev Premium Setup",
+            subtitle: "Perfect for PVP Style RP Servers.",
+            initialFee: "₱10,000",
+            monthly: "₱5,000",
+            bullets: [
+              "Full maintenance & optimization",
+              "Minor to mid custom script works",
+              "Implementation of new ideas",
+              "Stability checks & continuous improvements",
+            ],
+            footerNote:
+              "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
+            popular: true,
+          },
+        ],
+        aboutTitle: "About My Work",
+        aboutLeftTitle: "FiveM Development",
+        aboutLeftBody:
+          "My pricing reflects 4 years of active experience and a proven track record across Philippine RP servers.",
+        aboutLeftBody2:
+          "I deliver clean, optimized, and reliable systems backed by professional long-term support.",
+        hiringFeeNote:
+          "The initial hiring fee ensures commitment, protects both parties, and secures project scheduling.",
+      };
+    }
 
-  if (track === "web") {
     return {
       workloadLeft: "Service Type",
       workloadValue: "Project-Based",
@@ -115,10 +115,7 @@ export default function PricingTabs() {
       hiringFeeNote:
         "All web projects are quoted per scope. Final pricing is confirmed after requirement review.",
     };
-  }
-
-  return null;
-}, [track]);
+  }, [track]);
 
   const containerVariants: Variants = {
     hidden: {},
@@ -136,14 +133,11 @@ export default function PricingTabs() {
   };
 
   return (
-    <motion.div
-      className="w-full"
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-    >
+    <motion.div className="w-full" variants={containerVariants} initial="hidden" animate="show">
+      {/* TABS */}
       <motion.div variants={itemVariants} className="flex justify-center">
         <div className="relative inline-flex rounded-2xl border border-white/10 bg-white/5 p-1">
+          {/* Animated slider */}
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 420, damping: 32 }}
@@ -164,31 +158,35 @@ export default function PricingTabs() {
           </button>
 
           <button
-            disabled
-            title="Coming soon"
-            className="relative z-10 px-5 py-2 text-sm font-medium text-zinc-500 cursor-not-allowed"
+            onClick={() => WEB_ENABLED && setTrack("web")}
+            disabled={!WEB_ENABLED}
+            title={!WEB_ENABLED ? "Coming soon" : undefined}
+            className={[
+              "relative z-10 px-5 py-2 text-sm font-medium transition",
+              WEB_ENABLED
+                ? "text-white"
+                : "text-zinc-500 cursor-not-allowed",
+            ].join(" ")}
           >
             Web Development
           </button>
         </div>
       </motion.div>
 
+      {/* INFO */}
       <motion.div variants={itemVariants} className="mt-6 flex justify-center">
         <div className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm">
           <Briefcase className="h-4 w-4 text-zinc-300" />
-          <span className="text-zinc-400">{data?.workloadLeft}</span>
-          <span className="font-semibold text-white">{data?.workloadValue}</span>
+          <span className="text-zinc-400">{data.workloadLeft}</span>
+          <span className="font-semibold text-white">{data.workloadValue}</span>
         </div>
       </motion.div>
 
       <Container>
-        <motion.div
-          variants={containerVariants}
-          className="mt-10 grid gap-6 lg:grid-cols-2"
-        >
-          {data?.plans.map((p) => (
+        <motion.div variants={containerVariants} className="mt-10 grid gap-6 lg:grid-cols-3">
+          {data.plans.map((p) => (
             <motion.div key={p.title} variants={itemVariants}>
-              <PlanCard {...p} />
+              <PlanCard {...p} isWeb={track === "web"} />
             </motion.div>
           ))}
         </motion.div>
@@ -199,14 +197,14 @@ export default function PricingTabs() {
               <span className="rounded-xl border border-white/10 bg-white/5 p-2">
                 <Info className="h-5 w-5" />
               </span>
-              <div className="text-lg font-semibold">{data?.aboutTitle}</div>
+              <div className="text-lg font-semibold">{data.aboutTitle}</div>
             </div>
 
-            <p className="text-sm text-zinc-300">{data?.aboutLeftBody}</p>
-            <p className="mt-2 text-sm text-zinc-300">{data?.aboutLeftBody2}</p>
+            <p className="text-sm text-zinc-300">{data.aboutLeftBody}</p>
+            <p className="mt-2 text-sm text-zinc-300">{data.aboutLeftBody2}</p>
 
             <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5 text-xs text-zinc-300">
-              {data?.hiringFeeNote}
+              {data.hiringFeeNote}
             </div>
 
             <div className="mt-6 flex justify-end">
@@ -226,9 +224,12 @@ function PlanCard({
   subtitle,
   initialFee,
   monthly,
+  startsAt,
   bullets,
   footerNote,
   popular,
+  technologies,
+  isWeb,
 }: any) {
   return (
     <div
@@ -241,7 +242,7 @@ function PlanCard({
     >
       {popular && (
         <div className="absolute right-6 top-6 rounded-full bg-blue-500 px-3 py-1 text-[10px] font-semibold text-white">
-          POPULAR
+          PRO
         </div>
       )}
 
@@ -249,12 +250,33 @@ function PlanCard({
       <div className="mt-1 text-sm text-zinc-400">{subtitle}</div>
 
       <div className="mt-6 space-y-2">
-        <div className="text-sm text-zinc-400">Initial hiring fee</div>
+        <div className="text-sm text-zinc-400">Initial fee</div>
         <div className="text-3xl font-semibold">{initialFee}</div>
-        <div className="text-sm text-zinc-400">
-          <span className="font-semibold text-blue-300">{monthly}</span> /month
-        </div>
+
+        {isWeb ? (
+          <div className="text-sm text-zinc-400">
+            Starts at{" "}
+            <span className="font-semibold text-blue-400">{startsAt}</span>
+          </div>
+        ) : (
+          <div className="text-sm text-zinc-400">
+            <span className="font-semibold text-blue-300">{monthly}</span> /month
+          </div>
+        )}
       </div>
+
+      {technologies && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {technologies.map((t: string) => (
+            <span
+              key={t}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      )}
 
       <div className="mt-6 space-y-3">
         {bullets.map((b: string) => (
@@ -268,7 +290,7 @@ function PlanCard({
       </div>
 
       {footerNote && (
-        <div className="mt-6 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-xs text-amber-100">
+        <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 text-xs text-zinc-300">
           {footerNote}
         </div>
       )}

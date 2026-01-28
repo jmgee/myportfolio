@@ -16,7 +16,16 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-zinc-950/60 backdrop-blur">
+    <header
+      className="
+        fixed top-0 z-50 w-full
+        border-b border-white/10
+        bg-zinc-950/70 backdrop-blur
+        supports-[backdrop-filter]:bg-zinc-950/60
+        pt-[env(safe-area-inset-top)]
+        touch-manipulation
+      "
+    >
       <Container>
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
@@ -29,7 +38,7 @@ export default function Navbar() {
             <span className="text-sm font-semibold tracking-wide">JmG</span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden md:flex items-center gap-1">
             {links.map((l) => {
               const active = pathname === l.href;
               return (
@@ -37,10 +46,10 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   className={[
-                    "relative rounded-lg px-3 py-2 text-sm transition-all duration-200",
+                    "relative rounded-lg px-3 py-2 text-sm transition-all",
                     "text-zinc-300 hover:text-white hover:bg-white/5",
                     "active:scale-95",
-                    active ? "text-white bg-white/10" : "",
+                    active ? "bg-white/10 text-white" : "",
                   ].join(" ")}
                 >
                   {l.label}
@@ -48,7 +57,9 @@ export default function Navbar() {
                     className={[
                       "absolute left-3 right-3 -bottom-0.5 h-[2px] rounded-full",
                       "bg-blue-400 transition-all duration-300",
-                      active ? "opacity-100 scale-x-100" : "opacity-0 scale-x-50",
+                      active
+                        ? "opacity-100 scale-x-100"
+                        : "opacity-0 scale-x-50",
                     ].join(" ")}
                   />
                 </Link>

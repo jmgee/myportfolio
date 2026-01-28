@@ -31,9 +31,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-black text-zinc-100 antialiased">
+      <body
+        className="
+          bg-black text-zinc-100 antialiased
+          overflow-x-hidden
+          touch-manipulation
+        "
+      >
         <Navbar />
-        {children}
+        <main className="pt-[calc(env(safe-area-inset-top)+64px)]">
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>

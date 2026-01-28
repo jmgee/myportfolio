@@ -12,7 +12,7 @@ type Track = "fivem" | "web";
 export default function PricingTabs() {
   const [track, setTrack] = useState<Track>("fivem");
 
-  const WEB_ENABLED = false; 
+  const WEB_ENABLED = true; 
 
   const data = useMemo(() => {
     if (track === "fivem") {
@@ -85,10 +85,8 @@ export default function PricingTabs() {
       initial="hidden"
       animate="show"
     >
-      {/* TABS */}
       <motion.div variants={itemVariants} className="flex justify-center">
         <div className="relative inline-flex rounded-2xl border border-white/10 bg-white/5 p-1">
-          {/* Animated slider */}
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 420, damping: 32 }}

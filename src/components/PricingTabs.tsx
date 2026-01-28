@@ -11,8 +11,6 @@ type Track = "fivem" | "web";
 
 export default function PricingTabs() {
   const [track, setTrack] = useState<Track>("fivem");
-
-  // Toggle this when Web Development officially launches
   const WEB_ENABLED = true;
 
   const data = useMemo(() => {
@@ -51,7 +49,6 @@ export default function PricingTabs() {
           },
         ],
         aboutTitle: "About My Work",
-        aboutLeftTitle: "FiveM Development",
         aboutLeftBody:
           "My pricing reflects 4 years of active experience and a proven track record across Philippine RP servers.",
         aboutLeftBody2:
@@ -75,7 +72,6 @@ export default function PricingTabs() {
             "Mobile-friendly",
             "Fast delivery",
           ],
-          footerNote: "",
           popular: false,
         },
         {
@@ -88,7 +84,6 @@ export default function PricingTabs() {
             "User authentication",
             "API development",
           ],
-          footerNote: "",
           popular: false,
         },
         {
@@ -102,12 +97,10 @@ export default function PricingTabs() {
             "Modern best practices",
           ],
           technologies: ["Laravel", "React + Express", "Next.js", "Go"],
-          footerNote: "",
           popular: true,
         },
       ],
       aboutTitle: "Web Development",
-      aboutLeftTitle: "Web Development Services",
       aboutLeftBody:
         "Project-based web development focused on performance, scalability, and clean architecture.",
       aboutLeftBody2:
@@ -134,20 +127,16 @@ export default function PricingTabs() {
 
   return (
     <motion.div className="w-full" variants={containerVariants} initial="hidden" animate="show">
-      {/* TABS */}
       <motion.div variants={itemVariants} className="flex justify-center">
         <div className="relative inline-flex rounded-2xl border border-white/10 bg-white/5 p-1">
-          {/* Animated slider */}
           <motion.div
-            layout
-            transition={{ type: "spring", stiffness: 420, damping: 32 }}
-            className="absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-xl bg-blue-500 shadow-[0_0_32px_rgba(59,130,246,0.45)]"
+            layoutId="pricing-tab-slider"
+            className="absolute inset-y-1 rounded-xl bg-blue-500 shadow-[0_0_36px_rgba(59,130,246,0.45)]"
             style={{
-              transform:
-                track === "fivem"
-                  ? "translateX(0%)"
-                  : "translateX(100%)",
+              width: "50%",
+              left: track === "fivem" ? "0.25rem" : "50%",
             }}
+            transition={{ type: "spring", stiffness: 420, damping: 32 }}
           />
 
           <button
@@ -173,7 +162,6 @@ export default function PricingTabs() {
         </div>
       </motion.div>
 
-      {/* INFO */}
       <motion.div variants={itemVariants} className="mt-6 flex justify-center">
         <div className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm">
           <Briefcase className="h-4 w-4 text-zinc-300" />
@@ -226,7 +214,6 @@ function PlanCard({
   monthly,
   startsAt,
   bullets,
-  footerNote,
   popular,
   technologies,
   isWeb,
@@ -241,8 +228,8 @@ function PlanCard({
       ].join(" ")}
     >
       {popular && (
-        <div className="absolute right-6 top-6 rounded-full bg-blue-500 px-3 py-1 text-[10px] font-semibold text-white">
-          PRO
+        <div className="absolute right-6 top-6 rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-[10px] font-semibold text-blue-200">
+          {isWeb ? "PRO" : "POPULAR"}
         </div>
       )}
 
@@ -255,8 +242,7 @@ function PlanCard({
 
         {isWeb ? (
           <div className="text-sm text-zinc-400">
-            Starts at{" "}
-            <span className="font-semibold text-blue-400">{startsAt}</span>
+            Starts at <span className="font-semibold text-blue-400">{startsAt}</span>
           </div>
         ) : (
           <div className="text-sm text-zinc-400">
@@ -288,12 +274,6 @@ function PlanCard({
           </div>
         ))}
       </div>
-
-      {footerNote && (
-        <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 text-xs text-zinc-300">
-          {footerNote}
-        </div>
-      )}
 
       <div className="mt-6">
         <Button href="/contact" variant={popular ? "primary" : "secondary"} size="sm">

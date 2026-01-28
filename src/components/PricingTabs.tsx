@@ -12,6 +12,8 @@ type Track = "fivem" | "web";
 export default function PricingTabs() {
   const [track, setTrack] = useState<Track>("fivem");
 
+  const WEB_ENABLED = false; 
+
   const data = useMemo(() => {
     if (track === "fivem") {
       return {
@@ -19,7 +21,7 @@ export default function PricingTabs() {
         workloadValue: "0 Active Server",
         plans: [
           {
-            title: "Semi-Serious RP Setup",
+            title: "FiveM Dev Basic Setup",
             subtitle: "Perfect for growing RP communities.",
             initialFee: "₱5,000",
             monthly: "₱3,000",
@@ -32,7 +34,7 @@ export default function PricingTabs() {
             popular: false,
           },
           {
-            title: "Barilan RP Setup",
+            title: "FiveM Dev Premium Setup",
             subtitle: "Perfect for PVP Style RP Servers.",
             initialFee: "₱10,000",
             monthly: "₱5,000",
@@ -50,33 +52,20 @@ export default function PricingTabs() {
         aboutTitle: "About My Work",
         aboutLeftTitle: "FiveM Development",
         aboutLeftBody:
-          "My pricing reflects 4 years of active experience (since March 2022) and a proven track record across multiple Philippine RP servers.",
+          "My pricing reflects 4 years of active experience and a proven track record across Philippine RP servers.",
         aboutLeftBody2:
-          "I deliver clean, optimized, and reliable systems backed by a professional approach to maintenance, stability, and long-term growth.",
+          "I deliver clean, optimized, and reliable systems backed by professional long-term support.",
         hiringFeeNote:
-          "About the Initial Hiring Fee: The initial hiring fee is a professional security measure, ensuring commitment and fairness for both sides.",
+          "The initial hiring fee ensures commitment, protects both parties, and secures project scheduling.",
       };
     }
 
-    return {
-      workloadLeft: "Status",
-      workloadValue: "Coming Soon",
-      plans: [],
-      aboutTitle: "Web Development",
-      aboutLeftTitle: "Web Development",
-      aboutLeftBody:
-        "This service will be available soon. For now, please inquire directly.",
-      aboutLeftBody2: "",
-      hiringFeeNote: "Contact for early access discussions.",
-    };
+    return null;
   }, [track]);
 
   const containerVariants: Variants = {
-    hidden: { opacity: 1 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-    },
+    hidden: {},
+    show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
   };
 
   const itemVariants: Variants = {
@@ -96,54 +85,58 @@ export default function PricingTabs() {
       initial="hidden"
       animate="show"
     >
+      {/* TABS */}
       <motion.div variants={itemVariants} className="flex justify-center">
-        <div className="inline-flex rounded-2xl border border-white/10 bg-white/5 p-1">
+        <div className="relative inline-flex rounded-2xl border border-white/10 bg-white/5 p-1">
+          {/* Animated slider */}
+          <motion.div
+            layout
+            transition={{ type: "spring", stiffness: 420, damping: 32 }}
+            className="absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-xl bg-blue-500 shadow-[0_0_32px_rgba(59,130,246,0.45)]"
+            style={{
+              transform:
+                track === "fivem"
+                  ? "translateX(0%)"
+                  : "translateX(100%)",
+            }}
+          />
+
           <button
             onClick={() => setTrack("fivem")}
-            className={[
-              "rounded-xl px-5 py-2 text-sm font-medium transition",
-              track === "fivem"
-                ? "bg-blue-500 text-white shadow-soft"
-                : "text-zinc-400 hover:text-zinc-200",
-            ].join(" ")}
+            className="relative z-10 px-5 py-2 text-sm font-medium text-white"
           >
             FiveM Development
           </button>
 
           <button
-            onClick={() => setTrack("web")}
-            className={[
-              "rounded-xl px-5 py-2 text-sm font-medium transition",
-              track === "web"
-                ? "bg-blue-500 text-white shadow-soft"
-                : "text-zinc-400 hover:text-zinc-200",
-            ].join(" ")}
+            disabled
+            title="Coming soon"
+            className="relative z-10 px-5 py-2 text-sm font-medium text-zinc-500 cursor-not-allowed"
           >
             Web Development
           </button>
         </div>
       </motion.div>
+
       <motion.div variants={itemVariants} className="mt-6 flex justify-center">
         <div className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm">
           <Briefcase className="h-4 w-4 text-zinc-300" />
-          <span className="text-zinc-400">{data.workloadLeft}</span>
-          <span className="font-semibold text-white">{data.workloadValue}</span>
+          <span className="text-zinc-400">{data?.workloadLeft}</span>
+          <span className="font-semibold text-white">{data?.workloadValue}</span>
         </div>
       </motion.div>
 
       <Container>
-        {data.plans.length > 0 && (
-          <motion.div
-            variants={containerVariants}
-            className="mt-10 grid gap-6 lg:grid-cols-2"
-          >
-            {data.plans.map((p) => (
-              <motion.div key={p.title} variants={itemVariants}>
-                <PlanCard {...p} />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+        <motion.div
+          variants={containerVariants}
+          className="mt-10 grid gap-6 lg:grid-cols-2"
+        >
+          {data?.plans.map((p) => (
+            <motion.div key={p.title} variants={itemVariants}>
+              <PlanCard {...p} />
+            </motion.div>
+          ))}
+        </motion.div>
 
         <motion.div variants={itemVariants}>
           <Card className="mt-10">
@@ -151,23 +144,14 @@ export default function PricingTabs() {
               <span className="rounded-xl border border-white/10 bg-white/5 p-2">
                 <Info className="h-5 w-5" />
               </span>
-              <div className="text-lg font-semibold">{data.aboutTitle}</div>
+              <div className="text-lg font-semibold">{data?.aboutTitle}</div>
             </div>
 
-            <div className="space-y-3">
-              <div className="text-sm font-semibold text-zinc-200">
-                {data.aboutLeftTitle}
-              </div>
-              <p className="text-sm text-zinc-300">{data.aboutLeftBody}</p>
-              {data.aboutLeftBody2 && (
-                <p className="text-sm text-zinc-300">{data.aboutLeftBody2}</p>
-              )}
-            </div>
+            <p className="text-sm text-zinc-300">{data?.aboutLeftBody}</p>
+            <p className="mt-2 text-sm text-zinc-300">{data?.aboutLeftBody2}</p>
 
-            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
-              <div className="text-xs text-zinc-300">
-                {data.hiringFeeNote}
-              </div>
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5 text-xs text-zinc-300">
+              {data?.hiringFeeNote}
             </div>
 
             <div className="mt-6 flex justify-end">
@@ -190,15 +174,7 @@ function PlanCard({
   bullets,
   footerNote,
   popular,
-}: {
-  title: string;
-  subtitle: string;
-  initialFee: string;
-  monthly: string;
-  bullets: string[];
-  footerNote: string;
-  popular: boolean;
-}) {
+}: any) {
   return (
     <div
       className={[
@@ -209,7 +185,7 @@ function PlanCard({
       ].join(" ")}
     >
       {popular && (
-        <div className="absolute right-6 top-6 rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-[10px] font-semibold text-blue-200">
+        <div className="absolute right-6 top-6 rounded-full bg-blue-500 px-3 py-1 text-[10px] font-semibold text-white">
           POPULAR
         </div>
       )}
@@ -226,7 +202,7 @@ function PlanCard({
       </div>
 
       <div className="mt-6 space-y-3">
-        {bullets.map((b) => (
+        {bullets.map((b: string) => (
           <div key={b} className="flex items-start gap-3 text-sm text-zinc-300">
             <span className="rounded-md border border-white/10 bg-white/5 p-1">
               <Check className="h-4 w-4" />
@@ -236,23 +212,14 @@ function PlanCard({
         ))}
       </div>
 
-      <div
-        className={[
-          "mt-7 rounded-2xl border p-4 text-xs",
-          popular
-            ? "border-blue-500/30 bg-blue-500/10 text-zinc-200"
-            : "border-amber-500/20 bg-amber-500/10 text-amber-100",
-        ].join(" ")}
-      >
-        {footerNote}
-      </div>
+      {footerNote && (
+        <div className="mt-6 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-xs text-amber-100">
+          {footerNote}
+        </div>
+      )}
 
       <div className="mt-6">
-        <Button
-          href="/contact"
-          variant={popular ? "primary" : "secondary"}
-          size="sm"
-        >
+        <Button href="/contact" variant={popular ? "primary" : "secondary"} size="sm">
           Get started →
         </Button>
       </div>

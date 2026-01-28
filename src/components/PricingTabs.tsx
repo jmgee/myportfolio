@@ -10,51 +10,55 @@ import { motion, type Variants } from "framer-motion";
 type Track = "fivem";
 
 export default function PricingTabs() {
-  const [track] = useState<Track>("fivem");
+  const [track, setTrack] = useState<Track>("fivem");
 
   const data = useMemo(() => {
-    return {
-      workloadLeft: "Current Workload",
-      workloadValue: "0 Active Server",
-      plans: [
-        {
-          title: "Semi-Serious RP Setup",
-          subtitle: "Perfect for growing RP communities.",
-          initialFee: "₱5,000",
-          monthly: "₱3,000",
-          bullets: [
-            "Maintenance & ongoing support",
-            "Minor updates & bug fixes",
-            "Performance optimization",
-          ],
-          footerNote: "Excludes major custom script creations",
-          popular: false,
-        },
-        {
-          title: "Barilan RP Setup",
-          subtitle: "Perfect for PVP Style RP Servers.",
-          initialFee: "₱10,000",
-          monthly: "₱5,000",
-          bullets: [
-            "Full maintenance & optimization",
-            "Minor to mid custom script works",
-            "Implementation of new ideas",
-            "Stability checks & continuous improvements",
-          ],
-          footerNote:
-            "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
-          popular: true,
-        },
-      ],
-      aboutTitle: "About My Work",
-      aboutLeftTitle: "FiveM Development",
-      aboutLeftBody:
-        "My pricing reflects 4 years of active experience (since March 2022) and a proven track record across multiple Philippine RP servers from semi-serious projects.",
-      aboutLeftBody2:
-        "I deliver clean, optimized, and reliable systems backed by a professional approach to maintenance, stability, and long-term growth.",
-      hiringFeeNote:
-        "About the Initial Hiring Fee: The initial hiring fee is a professional security measure, ensuring commitment and fairness for both sides. It prevents incomplete transactions or unpaid work and helps every project start with trust and accountability.",
-    };
+    if (track === "fivem") {
+      return {
+        workloadLeft: "Current Workload",
+        workloadValue: "0 Active Server",
+        plans: [
+          {
+            title: "Semi-Serious RP Setup",
+            subtitle: "Perfect for growing RP communities.",
+            initialFee: "₱5,000",
+            monthly: "₱3,000",
+            bullets: [
+              "Maintenance & ongoing support",
+              "Minor updates & bug fixes",
+              "Performance optimization",
+            ],
+            footerNote: "Excludes major custom script creations",
+            popular: false,
+          },
+          {
+            title: "Barilan RP Setup",
+            subtitle: "Perfect for PVP Style RP Servers.",
+            initialFee: "₱10,000",
+            monthly: "₱5,000",
+            bullets: [
+              "Full maintenance & optimization",
+              "Minor to mid custom script works",
+              "Implementation of new ideas",
+              "Stability checks & continuous improvements",
+            ],
+            footerNote:
+              "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
+            popular: true,
+          },
+        ],
+        aboutTitle: "About My Work",
+        aboutLeftTitle: "FiveM Development",
+        aboutLeftBody:
+          "My pricing reflects 4 years of active experience (since March 2022) and a proven track record across multiple Philippine RP servers.",
+        aboutLeftBody2:
+          "I deliver clean, optimized, and reliable systems backed by a professional approach to maintenance, stability, and long-term growth.",
+        hiringFeeNote:
+          "About the Initial Hiring Fee: The initial hiring fee is a professional security measure, ensuring commitment and fairness for both sides.",
+      };
+    }
+
+    return null;
   }, [track]);
 
   const containerVariants: Variants = {
@@ -71,10 +75,7 @@ export default function PricingTabs() {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: {
-        duration: 0.35,
-        ease: [0.16, 1, 0.3, 1], 
-      },
+      transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -85,20 +86,25 @@ export default function PricingTabs() {
       initial="hidden"
       animate="show"
     >
-      <motion.div
-        variants={itemVariants}
-        className="mx-auto inline-flex rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-200"
-      >
-        FiveM Development
+      <motion.div variants={itemVariants} className="flex justify-center">
+        <button
+          onClick={() => setTrack("fivem")}
+          className={[
+            "inline-flex rounded-xl border px-4 py-2 text-sm transition",
+            track === "fivem"
+              ? "border-blue-500/40 bg-blue-500/10 text-blue-200"
+              : "border-white/10 bg-white/5 text-zinc-300 hover:bg-white/10",
+          ].join(" ")}
+        >
+          FiveM Development
+        </button>
       </motion.div>
 
       <motion.div variants={itemVariants} className="mt-6 flex justify-center">
         <div className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm">
-          <div className="flex items-center gap-2 text-zinc-300">
-            <Briefcase className="h-4 w-4" />
-            <span className="text-zinc-400">{data.workloadLeft}</span>
-            <span className="font-semibold text-white">{data.workloadValue}</span>
-          </div>
+          <Briefcase className="h-4 w-4 text-zinc-300" />
+          <span className="text-zinc-400">{data?.workloadLeft}</span>
+          <span className="font-semibold text-white">{data?.workloadValue}</span>
         </div>
       </motion.div>
 
@@ -107,39 +113,40 @@ export default function PricingTabs() {
           variants={containerVariants}
           className="mt-10 grid gap-6 lg:grid-cols-2"
         >
-          {data.plans.map((p) => (
+          {data?.plans.map((p) => (
             <motion.div key={p.title} variants={itemVariants}>
               <PlanCard {...p} />
             </motion.div>
           ))}
         </motion.div>
 
+        {/* ABOUT */}
         <motion.div variants={itemVariants}>
           <Card className="mt-10">
             <div className="mb-6 flex items-center gap-3">
-              <span className="rounded-xl border border-white/10 bg-white/5 p-2 text-zinc-100">
+              <span className="rounded-xl border border-white/10 bg-white/5 p-2">
                 <Info className="h-5 w-5" />
               </span>
-              <div className="text-lg font-semibold">{data.aboutTitle}</div>
+              <div className="text-lg font-semibold">{data?.aboutTitle}</div>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
-              <div className="space-y-3 md:col-span-2">
-                <div className="text-sm font-semibold text-zinc-200">
-                  {data.aboutLeftTitle}
-                </div>
-                <p className="text-sm text-zinc-300">{data.aboutLeftBody}</p>
-                <p className="text-sm text-zinc-300">{data.aboutLeftBody2}</p>
+            <div className="space-y-3">
+              <div className="text-sm font-semibold text-zinc-200">
+                {data?.aboutLeftTitle}
               </div>
+              <p className="text-sm text-zinc-300">{data?.aboutLeftBody}</p>
+              <p className="text-sm text-zinc-300">{data?.aboutLeftBody2}</p>
             </div>
 
             <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5">
-              <div className="text-xs text-zinc-300">{data.hiringFeeNote}</div>
+              <div className="text-xs text-zinc-300">
+                {data?.hiringFeeNote}
+              </div>
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="text-xs text-zinc-400">
-                Rates are indicative and may vary depending on scope, assets, and timeline.
+                Rates may vary depending on scope and requirements.
               </div>
 
               <Button href="/contact" variant="primary" size="sm">
@@ -179,11 +186,11 @@ function PlanCard({
           : "border-white/10 bg-white/5",
       ].join(" ")}
     >
-      {popular ? (
-        <div className="absolute right-6 top-6 rounded-full bg-blue-500/20 px-3 py-1 text-[10px] font-semibold tracking-wide text-blue-200 border border-blue-500/30">
+      {popular && (
+        <div className="absolute right-6 top-6 rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-[10px] font-semibold text-blue-200">
           POPULAR
         </div>
-      ) : null}
+      )}
 
       <div className="text-xl font-semibold">{title}</div>
       <div className="mt-1 text-sm text-zinc-400">{subtitle}</div>
@@ -192,17 +199,17 @@ function PlanCard({
         <div className="text-sm text-zinc-400">Initial hiring fee</div>
         <div className="text-3xl font-semibold">{initialFee}</div>
         <div className="text-sm text-zinc-400">
-          <span className="text-blue-300 font-semibold">{monthly}</span> /month
+          <span className="font-semibold text-blue-300">{monthly}</span> /month
         </div>
       </div>
 
       <div className="mt-6 space-y-3">
         {bullets.map((b) => (
           <div key={b} className="flex items-start gap-3 text-sm text-zinc-300">
-            <span className="mt-0.5 rounded-md border border-white/10 bg-white/5 p-1">
+            <span className="rounded-md border border-white/10 bg-white/5 p-1">
               <Check className="h-4 w-4" />
             </span>
-            <span>{b}</span>
+            {b}
           </div>
         ))}
       </div>
@@ -219,15 +226,8 @@ function PlanCard({
       </div>
 
       <div className="mt-6">
-        <Button
-          href="/contact"
-          variant={popular ? "primary" : "secondary"}
-          size="sm"
-        >
-          <span className="inline-flex items-center gap-2">
-            <span>Get started</span>
-            <span aria-hidden>→</span>
-          </span>
+        <Button href="/contact" variant={popular ? "primary" : "secondary"} size="sm">
+          Get started →
         </Button>
       </div>
     </div>

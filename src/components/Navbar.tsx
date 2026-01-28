@@ -20,10 +20,9 @@ export default function Navbar() {
       className="
         fixed top-0 z-50 w-full
         border-b border-white/10
-        bg-zinc-950/70 backdrop-blur
-        supports-[backdrop-filter]:bg-zinc-950/60
+        bg-zinc-950/80 backdrop-blur
+        supports-[backdrop-filter]:bg-zinc-950/70
         pt-[env(safe-area-inset-top)]
-        touch-manipulation
       "
     >
       <Container>
@@ -46,9 +45,8 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   className={[
-                    "relative rounded-lg px-3 py-2 text-sm transition-all",
+                    "relative rounded-lg px-3 py-2 text-sm transition",
                     "text-zinc-300 hover:text-white hover:bg-white/5",
-                    "active:scale-95",
                     active ? "bg-white/10 text-white" : "",
                   ].join(" ")}
                 >
@@ -66,10 +64,39 @@ export default function Navbar() {
               );
             })}
           </nav>
-
-          <div />
         </div>
       </Container>
+
+      <div
+        className="
+          md:hidden
+          overflow-x-auto
+          scrollbar-none
+          border-t border-white/10
+          bg-zinc-950/90
+        "
+      >
+        <div className="flex w-max min-w-full gap-1 px-3 py-2">
+          {links.map((l) => {
+            const active = pathname === l.href;
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={[
+                  "relative shrink-0 rounded-xl px-4 py-2 text-sm font-medium",
+                  "transition active:scale-95",
+                  active
+                    ? "bg-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+                    : "bg-white/5 text-zinc-300",
+                ].join(" ")}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </header>
   );
 }

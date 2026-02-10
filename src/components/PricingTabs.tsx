@@ -55,8 +55,7 @@ export default function PricingTabs() {
               "Implementation of new ideas",
               "Stability checks & continuous improvements",
             ],
-            footerNote:
-              "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
+            footerNote = "Ongoing support includes stability checks, performance optimization, and continuous improvements.",
             popular: true,
           },
         ] as Plan[],
@@ -219,22 +218,25 @@ function PlanCard({
   return (
     <div
       className={[
-        "relative rounded-[22px] border p-7 shadow-soft",
-        // Prevent badge overlap by adding top padding when highlighted
-        popular ? "pt-14" : "",
+        "rounded-[22px] border p-7 shadow-soft",
         popular
           ? "border-blue-500/40 bg-gradient-to-b from-blue-500/10 to-white/5"
           : "border-white/10 bg-white/5",
       ].join(" ")}
     >
-      {popular && (
-        <div className="absolute right-5 top-5 rounded-full border border-blue-500/30 bg-blue-500/20 px-2.5 py-1 text-[10px] font-semibold leading-none tracking-wide text-blue-200">
-          {isWeb ? "PRO" : "POPULAR"}
+      {/* Header row: safest badge positioning (no overlap) */}
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="text-xl font-semibold leading-tight">{title}</div>
+          <div className="mt-1 text-sm text-zinc-400">{subtitle}</div>
         </div>
-      )}
 
-      <div className="text-xl font-semibold leading-tight">{title}</div>
-      <div className="mt-1 text-sm text-zinc-400">{subtitle}</div>
+        {popular && (
+          <span className="shrink-0 rounded-full border border-blue-500/30 bg-blue-500/20 px-2.5 py-1 text-[10px] font-semibold leading-none tracking-wide text-blue-200">
+            {isWeb ? "PRO" : "POPULAR"}
+          </span>
+        )}
+      </div>
 
       <div className="mt-6 space-y-2">
         <div className="text-sm text-zinc-400">Initial fee</div>
@@ -270,7 +272,7 @@ function PlanCard({
             <span className="rounded-md border border-white/10 bg-white/5 p-1">
               <Check className="h-4 w-4" />
             </span>
-            {b}
+            <span>{b}</span>
           </div>
         ))}
       </div>

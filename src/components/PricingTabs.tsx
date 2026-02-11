@@ -58,8 +58,8 @@ export default function PricingTabs() {
         workloadValue: "0 Active Server",
         plans: [
           {
-            title: "FiveM Dev Basic Setup",
-            subtitle: "Perfect for growing RP communities.",
+            title: "Basic Setup",
+            subtitle: "Perfect for new servers needing essential features and support.",
             initialFee: "₱5,000",
             monthly: "₱3,000",
             bullets: [
@@ -71,8 +71,8 @@ export default function PricingTabs() {
             popular: false,
           },
           {
-            title: "FiveM Dev Premium Setup",
-            subtitle: "Perfect for PVP Style RP Servers.",
+            title: "Premium Setup",
+            subtitle: "Ideal for established servers seeking comprehensive support.",
             initialFee: "₱10,000",
             monthly: "₱5,000",
             bullets: [

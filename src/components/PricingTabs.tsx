@@ -129,8 +129,7 @@ export default function PricingTabs() {
       aboutTitle: "Web Development",
       aboutLeftBody:
         "Project-based web development focused on performance, scalability, and clean architecture.",
-      aboutLeftBody2:
-        "Pricing varies depending on scope, integrations, and delivery timeline.",
+      aboutLeftBody2: "Pricing varies depending on scope, integrations, and delivery timeline.",
       hiringFeeNote:
         "All web projects are quoted per scope. Final pricing is confirmed after requirement review.",
     };
@@ -240,6 +239,8 @@ export default function PricingTabs() {
 }
 
 function PlanCard({ plan, isWeb }: { plan: Plan; isWeb: boolean }) {
+  const badgeText = plan.popular ? (isWeb ? "PRO" : "POPULAR") : null;
+
   return (
     <div
       className={[
@@ -249,23 +250,22 @@ function PlanCard({ plan, isWeb }: { plan: Plan; isWeb: boolean }) {
           : "border-white/10 bg-white/5",
       ].join(" ")}
     >
-      {/* Header row: badge aligned safely, never overlaps title */}
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
+      <div className="relative">
+        {badgeText && (
+          <span className="absolute right-0 top-0 shrink-0 rounded-full border border-blue-500/30 bg-blue-500/20 px-2.5 py-1 text-[10px] font-semibold leading-none tracking-wide text-blue-200">
+            {badgeText}
+          </span>
+        )}
+
+        <div className="mx-auto min-h-[64px] px-10 text-center">
           <div className="text-xl font-semibold leading-tight">{plan.title}</div>
           <div className="mt-1 text-sm text-zinc-400">{plan.subtitle}</div>
         </div>
-
-        {plan.popular && (
-          <span className="shrink-0 rounded-full border border-blue-500/30 bg-blue-500/20 px-2.5 py-1 text-[10px] font-semibold leading-none tracking-wide text-blue-200">
-            {isWeb ? "PRO" : "POPULAR"}
-          </span>
-        )}
       </div>
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-6 space-y-2 text-center">
         <div className="text-sm text-zinc-400">Initial fee</div>
-        <div className="text-3xl font-semibold">{plan.initialFee}</div>
+        <div className="text-3xl font-semibold tracking-tight">{plan.initialFee}</div>
 
         {isWeb && isWebPlan(plan) ? (
           <div className="text-sm text-zinc-400">
@@ -279,7 +279,7 @@ function PlanCard({ plan, isWeb }: { plan: Plan; isWeb: boolean }) {
       </div>
 
       {isWeb && isWebPlan(plan) && plan.technologies?.length ? (
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap justify-center gap-2">
           {plan.technologies.map((tech) => (
             <span
               key={tech}
@@ -302,7 +302,7 @@ function PlanCard({ plan, isWeb }: { plan: Plan; isWeb: boolean }) {
         ))}
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 flex justify-center">
         <Button href="/contact" variant={plan.popular ? "primary" : "secondary"} size="sm">
           Get started →
         </Button>

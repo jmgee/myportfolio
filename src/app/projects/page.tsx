@@ -32,15 +32,13 @@ export default function ProjectsPage() {
           className="mx-auto max-w-3xl text-center"
         >
           <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-            <span className="text-blue-400">Projects</span> Showcase
+            <span className="text-blue-400">Reflection</span> Showcase
           </h1>
 
           <p className="mt-4 text-zinc-300 md:text-lg">
-            List of developed and maintained projects
+            Reflection on GED0001
           </p>
         </motion.div>
-
-        {/* GED 0001 Reflection Section */}
         <motion.section
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +52,6 @@ export default function ProjectsPage() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-2xl font-semibold text-white mb-6"
           >
-            Reflection on GED 0001
           </motion.h2>
 
           <motion.div

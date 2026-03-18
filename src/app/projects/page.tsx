@@ -32,12 +32,8 @@ export default function ProjectsPage() {
           className="mx-auto max-w-3xl text-center"
         >
           <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-            <span className="text-blue-400">Reflection</span> Showcase
+            <span className="text-blue-400">Reflection</span> on GED0001
           </h1>
-
-          <p className="mt-4 text-zinc-300 md:text-lg">
-            Reflection on GED0001
-          </p>
         </motion.div>
         <motion.section
           initial={{ opacity: 0, y: 40 }}

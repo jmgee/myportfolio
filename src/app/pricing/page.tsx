@@ -11,33 +11,16 @@ export default function ReadersResponseTabs() {
 
   const responses = {
     response1: {
-      image: "https://your-image-link-1.com/image.jpg",
+      image: "/images/response1.jpg", 
       content: `
-        This is the content for Reader’s Response 1.
-        Replace this with your actual response text.
+Honestly, when I first took GED 0001, I thought it would just be another typical English class where we focus on grammar, essays, and readings. At first, I didn’t expect much from it. But as the subject went on, I slowly realized that it was more than that — it actually helped me understand how important communication is in real life.
       `,
     },
     response2: {
-      image: "https://your-image-link-2.com/image.jpg",
+      image: "/images/response2.jpg", 
       content: `
-        This is the content for Reader’s Response 2.
-        Replace this with your actual response text.
+One thing I really learned from this subject is that English is not just about following rules or being perfect in grammar. It’s more about being able to express yourself clearly and connect with others. Whether it’s through writing or speaking, what matters is that your message is understood.
       `,
-    },
-  };
-
-  const containerVariants = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15, filter: "blur(6px)" },
-    show: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -46,11 +29,11 @@ export default function ReadersResponseTabs() {
   return (
     <motion.div
       className="w-full"
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
     >
-      <motion.div variants={itemVariants} className="flex justify-center">
+      <div className="flex justify-center">
         <div className="relative inline-flex rounded-2xl border border-white/10 bg-white/5 p-1">
           <motion.div
             layoutId="tab-slider"
@@ -59,7 +42,7 @@ export default function ReadersResponseTabs() {
               width: "50%",
               left: activeTab === "response1" ? "0.25rem" : "50%",
             }}
-            transition={{ type: "spring", stiffness: 420, damping: 30 }}
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
           />
 
           <button
@@ -78,21 +61,21 @@ export default function ReadersResponseTabs() {
             Readers Response 2
           </button>
         </div>
-      </motion.div>
+      </div>
 
       <Container>
         <motion.div
           key={activeTab}
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           className="mt-12"
         >
           {current.image && (
             <div className="flex justify-center mb-10">
               <img
                 src={current.image}
-                alt="Response visual"
+                alt="Reader response visual"
                 className="max-w-full rounded-2xl border border-white/10 shadow-soft"
               />
             </div>

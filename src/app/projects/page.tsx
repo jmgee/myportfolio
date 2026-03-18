@@ -64,7 +64,7 @@ export default function ProjectsPage() {
                 transition: { staggerChildren: 0.15 },
               },
             }}
-            className="space-y-6 text-zinc-300 leading-relaxed"
+            className="space-y-6 text-zinc-300 leading-relaxed text-center"
           >
             {[
               `Honestly, when I first took GED 0001, I thought it would just be another typical English class where we focus on grammar, essays, and readings. At first, I didn’t expect much from it. But as the subject went on, I slowly realized that it was more than that — it actually helped me understand how important communication is in real life.`,

@@ -57,7 +57,7 @@ export default function Page() {
                 variants={item}
                 className="text-4xl font-semibold tracking-tight md:text-6xl"
               >
-                Hi, I'm Jm
+                Hi, I'm Johnmar Francis L. Gunayan
               </motion.h1>
 
               <motion.p variants={item} className="text-zinc-300 md:text-lg">

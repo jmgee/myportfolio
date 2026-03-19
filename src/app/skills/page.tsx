@@ -146,7 +146,7 @@ export default function SkillsPage() {
                   <img
                     src={item.image}
                     alt="Skill visual"
-                    className="w-60 rounded-lg border border-white/10 mb-4"
+                    className="w-70 rounded-lg border border-white/10 mb-4"
                   />
                   <p className="max-w-xl text-zinc-300 leading-relaxed">
                     {item.text}

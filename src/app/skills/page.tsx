@@ -47,12 +47,16 @@ export default function SkillsPage() {
     reading: {
       items: [
         {
-          image: "https://example.com/reading1.jpg",
-          text: "Interpreting literary texts and extracting key insights.",
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/article1.png",
+          text: "Virtual Tourism.",
         },
         {
-          image: "https://example.com/reading2.jpg",
-          text: "Improving vocabulary and comprehension through diverse materials.",
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/article2.png",
+          text: "Security Software for Atonomous Vehicles.",
+        },
+        {
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/article3.png",
+          text: "In a Pandemic, I count nameless days.",
         },
       ],
     },

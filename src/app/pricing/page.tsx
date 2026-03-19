@@ -11,16 +11,12 @@ export default function ReadersResponseTabs() {
 
   const responses = {
     response1: {
-      image: "/images/response1.jpg", 
-      content: `
-Honestly, when I first took GED 0001, I thought it would just be another typical English class where we focus on grammar, essays, and readings. At first, I didn’t expect much from it. But as the subject went on, I slowly realized that it was more than that — it actually helped me understand how important communication is in real life.
-      `,
+      image: "https://example.com/your-image-1.jpg", 
+      content: `Student perception of chatgpt use in a college essay assignment: implications for learning, grading, and trust in artificial intelligence (Tossell et al., 2024)`,
     },
     response2: {
-      image: "/images/response2.jpg", 
-      content: `
-One thing I really learned from this subject is that English is not just about following rules or being perfect in grammar. It’s more about being able to express yourself clearly and connect with others. Whether it’s through writing or speaking, what matters is that your message is understood.
-      `,
+      image: "https://example.com/your-image-2.jpg", 
+      content: `Are we too dependent on technology (Terry Brown, 2020)?`,
     },
   };
 

@@ -35,8 +35,20 @@ export default function SkillsPage() {
       text: "Board games encourage strategic thinking, collaboration, and interactive communication in group settings.",
     },
     listening: {
-      image: "https://example.com/listening.jpg",
-      text: "Listening strengthens understanding, empathy, and the ability to process information effectively.",
+      items: [
+        {
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk1.png",
+          text: "How to Speach so that people want to listen | Julian Treasure.",
+        },
+        {
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk2.png",
+          text: "An artist's unflinching look at racial violence | Sanford Biggers.",
+        },
+        {
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk3.png",
+          text: "How augmented reality is changing activism | Glenn Cantave.",
+        },
+      ],
     },
   };
 
@@ -64,7 +76,6 @@ export default function SkillsPage() {
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
-
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -84,19 +95,37 @@ export default function SkillsPage() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="mt-12 text-center"
           >
-            {current.image && (
-              <div className="flex justify-center mb-6">
-                <img
-                  src={current.image}
-                  alt="Skill visual"
-                  className="w-56 rounded-lg border border-white/10"
-                />
+            {"image" in current && current.image && (
+              <>
+                <div className="flex justify-center mb-6">
+                  <img
+                    src={current.image}
+                    alt="Skill visual"
+                    className="w-56 rounded-lg border border-white/10"
+                  />
+                </div>
+
+                <div className="mx-auto max-w-2xl text-zinc-300 leading-relaxed">
+                  {current.text}
+                </div>
+              </>
+            )}
+            {"items" in current && (
+              <div className="space-y-10">
+                {current.items.map((item, index) => (
+                  <div key={index} className="flex flex-col items-center">
+                    <img
+                      src={item.image}
+                      alt="Listening visual"
+                      className="w-48 rounded-lg border border-white/10 mb-4"
+                    />
+                    <p className="max-w-xl text-zinc-300 leading-relaxed">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
               </div>
             )}
-
-            <div className="mx-auto max-w-2xl text-zinc-300 leading-relaxed">
-              {current.text}
-            </div>
           </motion.div>
         </motion.div>
       </Container>

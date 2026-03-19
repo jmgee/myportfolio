@@ -19,7 +19,7 @@ export default function SkillsPage() {
 
   const content = {
     speaking: {
-      image: "https://example.com/speaking.jpg", 
+      image: "https://example.com/speaking.jpg",
       text: "Speaking skills focus on verbal communication, clarity, confidence, and effective expression of ideas in discussions and presentations.",
     },
     film: {
@@ -50,37 +50,54 @@ export default function SkillsPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-col gap-3 max-w-xs">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`text-left text-2xl font-semibold transition ${
-                  activeTab === tab.id
-                    ? "bg-purple-600 text-white px-3 py-1 inline-block"
-                    : "text-zinc-300 hover:text-white"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+          <div className="flex justify-center">
+            <div className="relative inline-flex rounded-2xl border border-white/10 bg-black/40 p-1">
+              <motion.div
+                layoutId="tab-pill"
+                className="absolute inset-y-1 rounded-xl bg-blue-500 shadow-[0_0_30px_rgba(59,130,246,0.45)]"
+                style={{
+                  width: `${100 / tabs.length}%`,
+                  left: `${
+                    tabs.findIndex((t) => t.id === activeTab) *
+                    (100 / tabs.length)
+                  }%`,
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
 
-          <div className="mt-12">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className="relative z-10 px-6 py-2 text-sm font-medium text-white"
+                  type="button"
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="mt-12 text-center"
+          >
             {current.image && (
               <div className="flex justify-center mb-6">
                 <img
                   src={current.image}
                   alt="Skill visual"
-                  className="w-64 rounded-lg border border-white/10"
+                  className="w-56 rounded-lg border border-white/10"
                 />
               </div>
             )}
 
-            <div className="max-w-2xl text-zinc-300 leading-relaxed">
+            <div className="mx-auto max-w-2xl text-zinc-300 leading-relaxed">
               {current.text}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </Container>
     </main>

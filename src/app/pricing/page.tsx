@@ -11,11 +11,11 @@ export default function ReadersResponseTabs() {
 
   const responses = {
     response1: {
-      image: "https://example.com/your-image-1.jpg", 
+      image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/IMG_4823.jpg", 
       content: `Student perception of chatgpt use in a college essay assignment: implications for learning, grading, and trust in artificial intelligence (Tossell et al., 2024)`,
     },
     response2: {
-      image: "https://example.com/your-image-2.jpg", 
+      image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/IMG_4919.jpg", 
       content: `Are we too dependent on technology (Terry Brown, 2020)?`,
     },
   };

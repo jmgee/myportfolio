@@ -21,12 +21,8 @@ export default function SkillsPage() {
     speaking: {
       items: [
         {
-          image: "https://example.com/speaking1.jpg",
-          text: "Delivering structured presentations with confidence and clarity.",
-        },
-        {
-          image: "https://example.com/speaking2.jpg",
-          text: "Engaging in group discussions to develop persuasive communication.",
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/speaking1.png",
+          text: "Proof of Speaking.",
         },
       ],
     },

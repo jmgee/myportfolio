@@ -34,12 +34,12 @@ export default function SkillsPage() {
     film: {
       items: [
         {
-          image: "https://example.com/film1.jpg",
-          text: "Analyzing themes and symbolism in cinematic storytelling.",
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/film1.png",
+          text: "Much Ado About Nothing",
         },
         {
-          image: "https://example.com/film2.jpg",
-          text: "Understanding narrative structure and character development.",
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/film2.png",
+          text: "Little Woman.",
         },
       ],
     },

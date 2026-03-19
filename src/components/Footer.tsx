@@ -7,7 +7,7 @@ export default function Footer() {
       <Container>
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="text-sm text-zinc-400">
-            © {new Date().getFullYear()} JmG. All rights reserved.
+            © {new Date().getFullYear()} Johnmar Francis L. Gunayan. All rights reserved.
           </div>
 
           <div className="flex items-center gap-4">

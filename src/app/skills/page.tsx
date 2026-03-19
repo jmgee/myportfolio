@@ -19,34 +19,75 @@ export default function SkillsPage() {
 
   const content = {
     speaking: {
-      image: "https://example.com/speaking.jpg",
-      text: "Speaking skills focus on verbal communication, clarity, confidence, and effective expression of ideas in discussions and presentations.",
+      items: [
+        {
+          image: "https://example.com/speaking1.jpg",
+          text: "Delivering structured presentations with confidence and clarity.",
+        },
+        {
+          image: "https://example.com/speaking2.jpg",
+          text: "Engaging in group discussions to develop persuasive communication.",
+        },
+      ],
     },
+
     film: {
-      image: "https://example.com/film.jpg",
-      text: "Film viewing enhances analytical thinking by interpreting themes, narratives, and communication styles in visual storytelling.",
+      items: [
+        {
+          image: "https://example.com/film1.jpg",
+          text: "Analyzing themes and symbolism in cinematic storytelling.",
+        },
+        {
+          image: "https://example.com/film2.jpg",
+          text: "Understanding narrative structure and character development.",
+        },
+      ],
     },
+
     reading: {
-      image: "https://example.com/reading.jpg",
-      text: "Reading builds comprehension, vocabulary, and critical thinking through exposure to diverse texts and perspectives.",
+      items: [
+        {
+          image: "https://example.com/reading1.jpg",
+          text: "Interpreting literary texts and extracting key insights.",
+        },
+        {
+          image: "https://example.com/reading2.jpg",
+          text: "Improving vocabulary and comprehension through diverse materials.",
+        },
+      ],
     },
+
     board: {
-      image: "https://example.com/board.jpg",
-      text: "Board games encourage strategic thinking, collaboration, and interactive communication in group settings.",
+      items: [
+        {
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/boardgame1.png",
+          text: "",
+        },
+        {
+          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/boardgame2.png",
+          text: "",
+        },
+      ],
     },
+
     listening: {
       items: [
         {
-          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk1.png",
-          text: "How to Speach so that people want to listen | Julian Treasure.",
+          image:
+            "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk1.png",
+          text: "How to Speak so That People Want to Listen | Julian Treasure.",
         },
         {
-          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk2.png",
-          text: "An artist's unflinching look at racial violence | Sanford Biggers.",
+          image:
+            "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk2.png",
+          text:
+            "An Artist's Unflinching Look at Racial Violence | Sanford Biggers.",
         },
         {
-          image: "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk3.png",
-          text: "How augmented reality is changing activism | Glenn Cantave.",
+          image:
+            "https://r2.fivemanage.com/j8pmvTQ4T0tTaPRfv1JNy/tedtalk3.png",
+          text:
+            "How Augmented Reality is Changing Activism | Glenn Cantave.",
         },
       ],
     },
@@ -76,6 +117,7 @@ export default function SkillsPage() {
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
+
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
@@ -93,39 +135,25 @@ export default function SkillsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="mt-12 text-center"
+            className="mt-12"
           >
-            {"image" in current && current.image && (
-              <>
-                <div className="flex justify-center mb-6">
+            <div className="space-y-12">
+              {current.items.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center text-center"
+                >
                   <img
-                    src={current.image}
+                    src={item.image}
                     alt="Skill visual"
-                    className="w-56 rounded-lg border border-white/10"
+                    className="w-52 rounded-lg border border-white/10 mb-4"
                   />
+                  <p className="max-w-xl text-zinc-300 leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
-
-                <div className="mx-auto max-w-2xl text-zinc-300 leading-relaxed">
-                  {current.text}
-                </div>
-              </>
-            )}
-            {"items" in current && (
-              <div className="space-y-10">
-                {current.items.map((item, index) => (
-                  <div key={index} className="flex flex-col items-center">
-                    <img
-                      src={item.image}
-                      alt="Listening visual"
-                      className="w-48 rounded-lg border border-white/10 mb-4"
-                    />
-                    <p className="max-w-xl text-zinc-300 leading-relaxed">
-                      {item.text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       </Container>
